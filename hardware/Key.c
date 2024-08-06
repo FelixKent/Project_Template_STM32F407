@@ -10,7 +10,7 @@
 void Key_Init(void)
 {
 	/*开启时钟*/
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA | RCC_AHB1Periph_GPIOC, ENABLE); //开启 GPIOA 和 GPIOC 的时钟
+	RCC_AHB1PeriphClockCmd(KEY1_GPIO_CLK | KEY2_GPIO_CLK, ENABLE); //开启 GPIOA 和 GPIOC 的时钟
 	
 	/*GPIO初始化*/
 	GPIO_InitTypeDef GPIO_InitStructure;
@@ -34,19 +34,15 @@ uint8_t Key_GetNum(void)
 {
 	uint8_t KeyNum = 0;		//定义变量，默认键码值为0
 	
-	if (GPIO_ReadInputDataBit(KEY1_GPIO_PORT, KEY1_PIN) == 0)	//读KEY1输入寄存器的状态，如果为0，则代表按键1按下
+	if (GPIO_ReadInputDataBit(KEY1_GPIO_PORT, KEY1_PIN) == 1)	//读KEY1输入寄存器的状态，如果为1，则代表按键1按下
 	{
-		Delay_ms(20);											//延时消抖
-		while (GPIO_ReadInputDataBit(KEY1_GPIO_PORT, KEY1_PIN) == 0);	//等待按键松手
-		Delay_ms(20);											//延时消抖
+		while (GPIO_ReadInputDataBit(KEY1_GPIO_PORT, KEY1_PIN) == 1);	//等待按键松手
 		KeyNum = 1;												//置键码为1
 	}
 	
-	if (GPIO_ReadInputDataBit(KEY2_GPIO_PORT, KEY2_PIN) == 0)			//读PB11输入寄存器的状态，如果为0，则代表按键2按下
+	if (GPIO_ReadInputDataBit(KEY2_GPIO_PORT, KEY2_PIN) == 1)			//读PB11输入寄存器的状态，如果为1，则代表按键2按下
 	{
-		Delay_ms(20);											//延时消抖
-		while (GPIO_ReadInputDataBit(KEY2_GPIO_PORT, KEY2_PIN) == 0);	//等待按键松手
-		Delay_ms(20);											//延时消抖
+		while (GPIO_ReadInputDataBit(KEY2_GPIO_PORT, KEY2_PIN) == 1);	//等待按键松手
 		KeyNum = 2;												//置键码为2
 	}
 	
