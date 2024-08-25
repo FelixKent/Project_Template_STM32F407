@@ -1,8 +1,8 @@
-# The Project Template for STM32F407ZGT6 V2 Development Board
+# The Project Template for STM32F407ZGT6 V2 Development Board with StdLib
 
 ## 项目简介
 
-本项目为 STM32F407ZGT6 V2 开发板的嵌入式项目模板，基于 Keil MDK 开发。项目中已包含 STM32F407ZGT6 开发板的启动文件、通信协议与 STM32 标准外设库等功能。
+本项目为 STM32F407ZGT6 V2 开发板的嵌入式标准库（StdLib）项目模板，基于 Keil MDK 开发。项目中已包含 STM32F407ZGT6 开发板的启动文件、通信协议与 STM32 标准外设库等功能。
 
 ## 硬件环境
 - STM32F407ZGT6 野火霸天虎开发板 V2
